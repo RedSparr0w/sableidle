@@ -10,6 +10,7 @@ function LoadWoodcutting(){
 function RenderWoodcutting(){
     var text = "<h1>Woodcutting</h1>";
     text += "<p>level " + skills[WOODCUTTING].level() + " (" + skills[WOODCUTTING].xp + " / " + skills[WOODCUTTING].nextLevelXP() + "xp)<p/>";
+    text += "<div class='progressBar'><progress class='uk-progress' value='0' max='100'></progress></div>";
     trees.forEach(tree => {
         //If the woodcutting level is not high enough for a tree, don't render it.
         if(skills[WOODCUTTING].level() < tree.level){
@@ -57,7 +58,11 @@ class Tree {
         console.log("TEST " + this.name);
         doingSomething = true;
         tree = this; //Store the tree being chopped in the tree object for access in the chopDone function.
+        duration = this.time;
+        var now = new Date();
+        startedTime = now.getTime();
         setTimeout(this.chopDone, this.time);
+        setTimeout(UpdateProgress, 100);
     }
 
     //Is called by the timeout of the chop function. Uses the tree object to check what the tree being chopped is.
