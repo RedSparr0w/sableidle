@@ -62,7 +62,7 @@ class Tree {
         var now = new Date();
         startedTime = now.getTime();
         setTimeout(this.chopDone, this.time);
-        setTimeout(UpdateProgress, 100);
+        setTimeout(UpdateProgress, 10);
     }
 
     //Is called by the timeout of the chop function. Uses the tree object to check what the tree being chopped is.
