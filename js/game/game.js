@@ -42,18 +42,17 @@ class Skill{
         this.name = name;
         this.xp = xp;
         this.levelCap = levelCap;
+
+        // The amount of xp of the level cap.
+        this.maxXP = this.xpAtLevel(this.levelCap);
+        // Current level
         this._level = this.level;
     }
 
     //Add the given amount of xp to the skill.
     addXP(xp){
-        this.xp = Math.min(this.maxXP(), this.xp + xp);
+        this.xp = Math.min(this.maxXP, this.xp + xp);
         if (this._level < this.level) this.levelUp();
-    }
-
-    //Calculates the amount of xp of the level cap.
-    maxXP(){
-        return this.xpAtLevel(this.levelCap);
     }
 
     //Calculates the amount of xp for a given level.
