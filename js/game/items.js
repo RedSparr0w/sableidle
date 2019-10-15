@@ -59,11 +59,6 @@ class Inventory{
 
     //Checks if the inventory contains an itemID
     containsItem(itemID){
-        this.itemStacks.forEach(itemStack => {
-            if(itemStack.itemID == itemID){
-                return true;
-            }
-        });
-        return false;
+        return this.itemStacks.some(itemStack => itemStack.itemID == itemID);
     }
 }
