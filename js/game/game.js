@@ -15,7 +15,13 @@ const WOODCUTTING = 0;                  //The ID of the woodcutting skill.
 $(document).ready(function() {
     LoadSkills();
     inventory = new Inventory(10);
+    RenderHomePage();
 })
+
+//Renders the home page.
+function RenderHomePage(){
+    $("#lvl_woodcutting").html(`${skills[WOODCUTTING].level}/${skills[WOODCUTTING].levelCap}`);
+}
 
 //Loads all the skills. Calls helper methods for each skill.
 function LoadSkills(){
@@ -65,11 +71,11 @@ class Skill{
 
     //Calculate the xp of the next level.
     nextLevelXP(){
-        return this.xpAtLevel(this.level() + 1);
+        return this.xpAtLevel(this.level + 1);
     }
 
     //Calculate the current level based on the xp of the skill.
-    level(){
+    get level(){
         return Math.floor(this.xp / 100);
     }
 }
