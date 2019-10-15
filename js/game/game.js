@@ -37,20 +37,18 @@ function UpdateProgress(){
 
 //The base object of a skill. Stores basic helper methods for skills.
 class Skill{
-    constructor(id, name){
+    constructor(id, name, xp = 0, levelCap = 1){
         this.id = id;
         this.name = name;
-        this.xp = 0;
-        this.levelCap = 1;
+        this.xp = xp;
+        this.levelCap = levelCap;
+        this._level = this.level;
     }
 
     //Add the given amount of xp to the skill.
     addXP(xp){
-        if(this.xp + xp >= this.maxXP()){
-            this.xp = this.maxXP();
-        }else{
-            this.xp += xp;
-        }
+        this.xp = Math.min(this.maxXP(), this.xp + xp);
+        if (this._level < this.level) this.levelUp();
     }
 
     //Calculates the amount of xp of the level cap.
@@ -65,11 +63,16 @@ class Skill{
 
     //Calculate the xp of the next level.
     nextLevelXP(){
-        return this.xpAtLevel(this.level() + 1);
+        return this.xpAtLevel(this.level + 1);
     }
 
     //Calculate the current level based on the xp of the skill.
-    level(){
+    get level (){
         return Math.floor(this.xp / 100);
+    }
+
+    levelUp(){
+      this._level = this.level;
+      alert(`${this.name} leveled up to ${this.level}`);
     }
 }
