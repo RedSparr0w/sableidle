@@ -41,7 +41,7 @@ class Skill{
         this.id = id;
         this.name = name;
         this.xp = 0;
-        this.levelCap = 1;
+        this.levelCap = 10;
     }
 
     //Add the given amount of xp to the skill.
