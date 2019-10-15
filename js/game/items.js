@@ -35,20 +35,18 @@ class Inventory{
     //Tries to add a given itemstack to the inventory.
     addItem(itemStack){
         //First try to add the items to existing item stacks.
-        this.itemStacks.forEach(tryStack => {
-            if(tryStack.itemID == itemStack.itemID){
-                if(tryStack.amount < items[tryStack.itemID].stackMax){
-                    if(tryStack.amount + itemStack.amount <= items[tryStack.itemID].stackMax){
-                        tryStack.amount += itemStack.amount;
-                        return true;
-                    }else{
-                        var delta = items[tryStack.itemID].stackMax - tryStack.amount;
-                        tryStack.amount = items[tryStack.itemID].stackMax;
-                        itemStack.amount = delta;
-                    }
-                }
+        var stackWithSpace = this.itemStacks.find(tryStack => tryStack.itemID == itemStack.itemID && tryStack.amount < items[tryStack.itemID].stackMax);
+        if(stackWithSpace != null){
+            if(stackWithSpace.amount + itemStack.amount <= items[itemStack.itemID].stackMax){
+                stackWithSpace.amount += itemStack.amount;
+                return true;
+            }else{
+                var delta = items[itemStack.itemID].stackMax - stackWithSpace.amount;
+                stackWithSpace.amount = items[itemStack.itemID].stackMax;
+                itemStack.amount = delta;
+                return this.addItem(itemStack);
             }
-        });
+        }
 
         //Then create a new item stack.
         if(this.itemStacks.length <= this.maxStacks){
