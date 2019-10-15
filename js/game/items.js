@@ -50,7 +50,7 @@ class Inventory{
         }
 
         //First try to add the items to existing item stacks.
-        var stackWithSpace = this.itemStacks.find(tryStack => tryStack.itemID == itemStack.itemID && !tryStack.reachedCapacity);
+        var stackWithSpace = this.itemStacks.find(tryStack => tryStack.itemID == itemStack.itemID && !tryStack.reachedCapacity());
         if(stackWithSpace != null){
             if(stackWithSpace.amount + itemStack.amount <= itemStack.item.stackMax){
                 stackWithSpace.amount += itemStack.amount;
