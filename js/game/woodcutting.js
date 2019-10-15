@@ -9,7 +9,7 @@ function LoadWoodcutting(){
 //Render the woodcutting skill. Is called at the start of the game and whenever a tree is cut.
 function RenderWoodcutting(){
     var text = `<h1>Woodcutting</h1>
-        <p>level ${skills[WOODCUTTING].level}  (${skills[WOODCUTTING].xp} / ${skills[WOODCUTTING].nextLevelXP()}xp (${skills[WOODCUTTING].maxXP()}xp))<p/>
+        <p>level ${skills[WOODCUTTING].level}  (${skills[WOODCUTTING].xp} / ${skills[WOODCUTTING].nextLevelXP()}xp (${skills[WOODCUTTING].maxXP}xp))<p/>
         <div class='progressBar'><progress class='uk-progress' value='0' max='100'></progress></div>`;
     trees.forEach(tree => {
         //If the woodcutting level is not high enough for a tree, don't render it.
