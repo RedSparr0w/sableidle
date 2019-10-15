@@ -23,6 +23,16 @@ class ItemStack{
         this.itemID = itemID;
         this.amount = amount;
     }
+
+    //Returns the item type.
+    get item(){
+        return items[this.itemID]
+    }
+
+    //Checks if the item stack has reached capacity.
+    reachedCapacity(){
+        return this.amount >= this.item.stackMax ;
+    }
 }
 
 //The class that describes an inventory.
@@ -34,15 +44,20 @@ class Inventory{
 
     //Tries to add a given itemstack to the inventory.
     addItem(itemStack){
+        //Check if the given object is an ItemStack.
+        if(!itemStack instanceof ItemStack){
+            console.log("ERROR: given object is not an ItemStack.");
+        }
+
         //First try to add the items to existing item stacks.
-        var stackWithSpace = this.itemStacks.find(tryStack => tryStack.itemID == itemStack.itemID && tryStack.amount < items[tryStack.itemID].stackMax);
+        var stackWithSpace = this.itemStacks.find(tryStack => tryStack.itemID == itemStack.itemID && !tryStack.reachedCapacity);
         if(stackWithSpace != null){
-            if(stackWithSpace.amount + itemStack.amount <= items[itemStack.itemID].stackMax){
+            if(stackWithSpace.amount + itemStack.amount <= itemStack.item.stackMax){
                 stackWithSpace.amount += itemStack.amount;
                 return true;
             }else{
-                var delta = items[itemStack.itemID].stackMax - stackWithSpace.amount;
-                stackWithSpace.amount = items[itemStack.itemID].stackMax;
+                var delta = itemStack.item.stackMax - stackWithSpace.amount;
+                stackWithSpace.amount = itemStack.item.stackMax;
                 itemStack.amount = delta;
                 return this.addItem(itemStack);
             }
