@@ -13,7 +13,7 @@ class Item{
     constructor(id, name){
         this.id = id;
         this.name = name;
-        this.stackMax = 5;
+        this.stackMax = 100;
     }
 }
 
