@@ -1,5 +1,8 @@
 var skills = [];                        //Array of all the skills in the game. Are loaded in LoadSkills.
 var trees = [];                         //Array of all the trees that can be chopped with woodcutting. Loaded in LoadTrees.
+var items = [];                         //Array of all the items in the game. Loaded in LoadItems.
+
+var inventory;
 
 var doingSomething = false;             //Is set to true if an action is being performed. Used to check if an action can be performed.
 var startedTime = 0;                    //The starting time of the current action.
@@ -11,11 +14,13 @@ const WOODCUTTING = 0;                  //The ID of the woodcutting skill.
 //The startpoint of the JS of the game.
 $(document).ready(function() {
     LoadSkills();
+    inventory = new Inventory(10);
 })
 
 //Loads all the skills. Calls helper methods for each skill.
 function LoadSkills(){
     LoadWoodcutting();
+    LoadItems();
 }
 
 function UpdateProgress(){

@@ -24,8 +24,8 @@ function RenderWoodcutting(){
 
 //Load the trees into the trees array.
 function LoadTrees(){
-    trees[0] = new Tree(0, "Fir", 1000, 5, 0);
-    trees[1] = new Tree(1, "Douglas Fir", 2500, 10, 1);
+    trees[0] = new Tree(0, "Fir", 1000, 5, 0, IID_LOG_FIR);
+    trees[1] = new Tree(1, "Douglas Fir", 2500, 10, 1, IID_LOG_DOUGLAS_FIR);
 }
 
 //Function called by the UI when a chop tree button is clicked.
@@ -35,12 +35,13 @@ function ChopTree(id){
 
 //The base object of a tree. Stores helper methods related to woodcutting.
 class Tree {
-    constructor(id, name, time, xp, level) {
+    constructor(id, name, time, xp, level, itemID) {
         this.id = id;
         this.name = name;
         this.time = time;
         this.xp = xp;
         this.level = level;
+        this.itemID = itemID;
     }
 
     //Is called by the ChopTree helper method whenever a chop tree button is clicked. Check sif a tree can be chopped and initiates the action.
@@ -70,6 +71,7 @@ class Tree {
         console.log("DONE " + tree.name);
         doingSomething = false;
         skills[WOODCUTTING].addXP(tree.xp);
+        inventory.addItem(new ItemStack(tree.itemID, 1));
         console.log(skills[WOODCUTTING].name + ": " + skills[WOODCUTTING].xp + "xp");
         tree = null;
         RenderWoodcutting();
