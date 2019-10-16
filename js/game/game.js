@@ -40,6 +40,18 @@ function UpdateProgress(){
     setTimeout(UpdateProgress, 10);
 }
 
+//Render the skills list.
+function RenderSkills(){
+    let skillsText = "<h2>Skills</h2><ul>";
+
+    skills.forEach(skill => {
+        skillsText += `<li>${skill.name} Level ${skill.level}/${skill.levelCap} (${skill.xp}/${skill.nextLevelXP})</li>`;
+    });
+
+    skillsText += "</ul>";
+    $("#skills").html(skillsText);
+}
+
 //The base object of a skill. Stores basic helper methods for skills.
 class Skill{
     constructor(id, name, xp = 0, levelCap = 10){
@@ -66,7 +78,7 @@ class Skill{
     }
 
     //Calculate the xp of the next level.
-    nextLevelXP(){
+    get nextLevelXP(){
         return this.xpAtLevel(this.level + 1);
     }
 
