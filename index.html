@@ -14,7 +14,7 @@
         <div class="uk-container">
             <h1>Sable Idle</h1>
             <ul class="uk-subnav uk-subnav-pill" uk-switcher>
-                <li><a href="#" onclick="RenderHomePage()">Home</a></li>
+                <li><a href="#" onclick="RenderCurrentLocation()">Home</a></li>
                 <li><a href="#">Woodcutting</a></li>
                 <li><a href="#">Changelog</a></li>
                 <li><a href="#">Roadmap</a></li>
@@ -23,13 +23,9 @@
             
             <ul class="uk-switcher uk-margin">
                 <li><div id="Home">
-                    <p>Welcome to Sable Idle, a so far very simple prototype of an idle game.</p>
-                    <div id="skills">
-                        <h3>Skills</h3>
-                        <ul>
-                            <li>Woodcutting: <span id="lvl_woodcutting"></span></li>
-                        </ul>
-                    </div>
+                    <h2 id="currentLocationName"></h2>
+                    <div id="possibleConnections"></div>
+                    <div id="possibleTrees"></div>
                 </div></li>
                 <li><div id="Woodcutting"></div></li>
                 <li>Nothing yet</li>
@@ -71,5 +67,6 @@
         <script src="js/game/game.js"></script>
         <script src="js/game/items.js"></script>
         <script src="js/game/woodcutting.js"></script>
+        <script src="js/game/location.js"></script>
     </body>
 </html>

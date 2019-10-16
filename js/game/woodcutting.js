@@ -1,3 +1,6 @@
+const TID_FIR = "fir";
+const TID_DOUGLAS_FIR = "douglas_fir";
+
 //The base function for loading woodcutting.
 function LoadWoodcutting(){
     skills[WOODCUTTING] = new Skill(WOODCUTTING, "Woodcutting");
@@ -13,6 +16,7 @@ function RenderWoodcutting(){
         <div class='progressBar'><progress class='uk-progress' value='0' max='100'></progress></div>`;
     trees.forEach(tree => {
         //If the woodcutting level is not high enough for a tree, don't render it.
+        console.log(tree);
         if(skills[WOODCUTTING].level < tree.level){
             return;
         }
@@ -22,10 +26,18 @@ function RenderWoodcutting(){
     $("#Woodcutting").html(text);
 }
 
+function GetChopButtonIfPossible(treeID){
+    if(skills[WOODCUTTING].level >= trees[treeID].level){
+        return "<button class='uk-button uk-button-default' onclick='ChopTree(" + trees[treeID].id + ")'>Chop " + trees[treeID].name + "</button>";
+    }
+
+    return "";
+}
+
 //Load the trees into the trees array.
 function LoadTrees(){
-    trees[0] = new Tree(0, "Fir", 1000, 5, 0, IID_LOG_FIR);
-    trees[1] = new Tree(1, "Douglas Fir", 2500, 10, 1, IID_LOG_DOUGLAS_FIR);
+    trees[TID_FIR] = new Tree(TID_FIR, "Fir", 1000, 5, 0, IID_LOG_FIR);
+    trees[TID_DOUGLAS_FIR] = new Tree(TID_DOUGLAS_FIR, "Douglas Fir", 2500, 10, 1, IID_LOG_DOUGLAS_FIR);
 }
 
 //Function called by the UI when a chop tree button is clicked.
