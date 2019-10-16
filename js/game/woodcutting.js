@@ -6,29 +6,11 @@ function LoadWoodcutting(){
     skills[WOODCUTTING] = new Skill(WOODCUTTING, "Woodcutting");
 
     LoadTrees();
-    RenderWoodcutting();
-}
-
-//Render the woodcutting skill. Is called at the start of the game and whenever a tree is cut.
-function RenderWoodcutting(){
-    var text = `<h1>Woodcutting</h1>
-        <p>level ${skills[WOODCUTTING].level}  (${skills[WOODCUTTING].xp} / ${skills[WOODCUTTING].nextLevelXP()}xp (${skills[WOODCUTTING].maxXP}xp))<p/>
-        <div class='progressBar'><progress class='uk-progress' value='0' max='100'></progress></div>`;
-    trees.forEach(tree => {
-        //If the woodcutting level is not high enough for a tree, don't render it.
-        console.log(tree);
-        if(skills[WOODCUTTING].level < tree.level){
-            return;
-        }
-
-        text += "<button class='uk-button uk-button-default' onclick='ChopTree(" + tree.id + ")'>Chop " + tree.name + "</button>";
-    });
-    $("#Woodcutting").html(text);
 }
 
 function GetChopButtonIfPossible(treeID){
     if(skills[WOODCUTTING].level >= trees[treeID].level){
-        return "<button class='uk-button uk-button-default' onclick='ChopTree(" + trees[treeID].id + ")'>Chop " + trees[treeID].name + "</button>";
+        return `<button class='uk-button uk-button-default' onclick="ChopTree('${trees[treeID].id}')">Chop ${trees[treeID].name}</button>`;
     }
 
     return "";
@@ -86,6 +68,6 @@ class Tree {
         inventory.addItem(new ItemStack(tree.itemID, 1));
         console.log(skills[WOODCUTTING].name + ": " + skills[WOODCUTTING].xp + "xp");
         tree = null;
-        RenderWoodcutting();
+        RenderCurrentLocation();
     }
 }
