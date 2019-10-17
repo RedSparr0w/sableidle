@@ -1,3 +1,17 @@
+//Contains all the constants of the game
+const CONSTS = {
+    SKILL_WOODCUTTING : 0,
+
+    LID_STARTERIA : "starteria",
+    LID_STARTOPOLIS : "startopolis",
+
+    TID_FIR : "fir",
+    TID_DOUGLAS_FIR : "douglas_fir",
+
+    IID_LOG_FIR : "log_fir",
+    IID_LOG_DOUGLAS_FIR : "log_douglas_fir"
+};
+
 var skills = [];                        //Array of all the skills in the game. Are loaded in LoadSkills.
 var trees = [];                         //Array of all the trees that can be chopped with woodcutting. Loaded in LoadTrees.
 var items = [];                         //Array of all the items in the game. Loaded in LoadItems.
@@ -11,8 +25,6 @@ var doingSomething = false;             //Is set to true if an action is being p
 var startedTime = 0;                    //The starting time of the current action.
 var duration = 0;                       //The duration of the current action in millis.
 var tree;                               //If the current action is woodcutting, this stores the tree being chopped.
-
-const WOODCUTTING = 0;                  //The ID of the woodcutting skill.
 
 //The startpoint of the JS of the game.
 $(document).ready(function() {

@@ -1,17 +1,14 @@
-const LID_STARTERIA = "starteria";
-const LID_STARTOPOLIS = "startopolis";
-
 //Loads the locationsinto the array.
 function LoadLocations(){
-    locations[LID_STARTERIA] = new Location(LID_STARTERIA, "Starteria");
-    locations[LID_STARTERIA].addConnection(LID_STARTOPOLIS);
-    locations[LID_STARTERIA].addTree(TID_FIR);
-    locations[LID_STARTERIA].addTree(TID_DOUGLAS_FIR);
+    locations[CONSTS.LID_STARTERIA] = new Location(CONSTS.LID_STARTERIA, "Starteria");
+    locations[CONSTS.LID_STARTERIA].addConnection(CONSTS.LID_STARTOPOLIS);
+    locations[CONSTS.LID_STARTERIA].addTree(CONSTS.TID_FIR);
+    locations[CONSTS.LID_STARTERIA].addTree(CONSTS.TID_DOUGLAS_FIR);
 
-    locations[LID_STARTOPOLIS] = new Location(LID_STARTOPOLIS, "Startopolis");
-    locations[LID_STARTOPOLIS].addConnection(LID_STARTERIA);
+    locations[CONSTS.LID_STARTOPOLIS] = new Location(CONSTS.LID_STARTOPOLIS, "Startopolis");
+    locations[CONSTS.LID_STARTOPOLIS].addConnection(CONSTS.LID_STARTERIA);
 
-    currentLocation = LID_STARTERIA;
+    currentLocation = CONSTS.LID_STARTERIA;
 }
 
 //Renders the home page with the current location.

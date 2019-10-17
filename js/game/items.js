@@ -1,11 +1,7 @@
-//A list of constants of item ID's.
-const IID_LOG_FIR =         "log_fir";
-const IID_LOG_DOUGLAS_FIR = "log_douglas_fir";
-
 //Loads all the items into the items array.
 function LoadItems(){
-    items[IID_LOG_FIR] =            new Item(IID_LOG_FIR, "Fir");
-    items[IID_LOG_DOUGLAS_FIR] =    new Item(IID_LOG_DOUGLAS_FIR, "Douglas Fir");
+    items[CONSTS.IID_LOG_FIR] =            new Item(CONSTS.IID_LOG_FIR, "Fir");
+    items[CONSTS.IID_LOG_DOUGLAS_FIR] =    new Item(CONSTS.IID_LOG_DOUGLAS_FIR, "Douglas Fir");
 }
 
 //The Item class contains the info and helper functions of items.

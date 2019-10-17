@@ -1,15 +1,12 @@
-const TID_FIR = "fir";
-const TID_DOUGLAS_FIR = "douglas_fir";
-
 //The base function for loading woodcutting.
 function LoadWoodcutting(){
-    skills[WOODCUTTING] = new Skill(WOODCUTTING, "Woodcutting");
+    skills[CONSTS.SKILL_WOODCUTTING] = new Skill(CONSTS.SKILL_WOODCUTTING, "Woodcutting");
 
     LoadTrees();
 }
 
 function GetChopButtonIfPossible(treeID){
-    if(skills[WOODCUTTING].level >= trees[treeID].level){
+    if(skills[CONSTS.SKILL_WOODCUTTING].level >= trees[treeID].level){
         return `<button class='uk-button uk-button-default' onclick="ChopTree('${trees[treeID].id}')">Chop ${trees[treeID].name}</button>`;
     }
 
@@ -18,8 +15,8 @@ function GetChopButtonIfPossible(treeID){
 
 //Load the trees into the trees array.
 function LoadTrees(){
-    trees[TID_FIR] = new Tree(TID_FIR, "Fir", 1000, 5, 0, IID_LOG_FIR);
-    trees[TID_DOUGLAS_FIR] = new Tree(TID_DOUGLAS_FIR, "Douglas Fir", 2500, 10, 1, IID_LOG_DOUGLAS_FIR);
+    trees[CONSTS.TID_FIR] = new Tree(CONSTS.TID_FIR, "Fir", 1000, 5, 0, CONSTS.IID_LOG_FIR);
+    trees[CONSTS.TID_DOUGLAS_FIR] = new Tree(CONSTS.TID_DOUGLAS_FIR, "Douglas Fir", 2500, 10, 1, CONSTS.IID_LOG_DOUGLAS_FIR);
 }
 
 //Function called by the UI when a chop tree button is clicked.
@@ -45,7 +42,7 @@ class Tree {
             return;
         }
 
-        if(skills[WOODCUTTING].level < this.level){
+        if(skills[CONSTS.SKILL_WOODCUTTING].level < this.level){
             console.log("Woodcutting level is not high enough to cut " + this.name + ".");
             return;
         }
@@ -64,9 +61,9 @@ class Tree {
     chopDone(){
         console.log("DONE " + tree.name);
         doingSomething = false;
-        skills[WOODCUTTING].addXP(tree.xp);
+        skills[CONSTS.SKILL_WOODCUTTING].addXP(tree.xp);
         inventory.addItem(new ItemStack(tree.itemID, 1));
-        console.log(skills[WOODCUTTING].name + ": " + skills[WOODCUTTING].xp + "xp");
+        console.log(skills[CONSTS.SKILL_WOODCUTTING].name + ": " + skills[CONSTS.SKILL_WOODCUTTING].xp + "xp");
         tree = null;
         RenderCurrentLocation();
     }
